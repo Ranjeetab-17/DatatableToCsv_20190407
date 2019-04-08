@@ -13,6 +13,8 @@
 
             <asp:Button Text="SaveToCSV" CssClass="btn btn-primary" runat="server" ID="btnConvert" OnClick="btnConvert_Click" />
 
+            <asp:Button Text="Download File" ID="btnDownload" runat="server" OnClick="btnDownload_Click" />
+
             <h2>Getting started</h2>
             <p>
                 ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.

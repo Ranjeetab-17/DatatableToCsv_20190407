@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -73,9 +74,24 @@ namespace DatatableToCsv
 
         protected void btnConvert_Click(object sender, EventArgs e)
         {
-            string folderPath = @"D:\";
             Export(GetDetails());
             ////File.WriteAllText(folderPath + "GridViewExport.csv",da);
+        }
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+
+            WebClient req = new WebClient();
+            HttpResponse response = HttpContext.Current.Response;
+            response.Clear();
+            response.ClearContent();
+            response.ClearHeaders();
+            response.Buffer = true;
+            response.AddHeader("Content-Disposition", "attachment;filename=07042019_2104.csv");
+            ////byte[] data = req.DownloadData(Server.MapPath(@"D:\07042019_2104.csv"));
+            byte[] data = req.DownloadData(@"D:\07042019_2104.csv");
+            response.BinaryWrite(data);
+            response.End();
         }
 
         public void Export(DataTable dt)
